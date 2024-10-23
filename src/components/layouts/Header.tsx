@@ -14,6 +14,7 @@ import { useCurrentUser } from "@/hooks/useUser";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import Spinner from "../common/Spinner";
 import Logo from "../logo";
 import { ModeToggle } from "../mode-toggle";
 
@@ -117,7 +118,10 @@ export function Header() {
                 >
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={currentUser?.avatarUrl} />
-                    <AvatarFallback>{currentUser?.userInitials}</AvatarFallback>
+                    <AvatarFallback>
+                      <Spinner size={12} />
+                      {/* {currentUser?.userInitials} */}
+                    </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>

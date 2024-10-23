@@ -6,6 +6,7 @@ export interface UserInfo {
   name: string;
   email: string;
   avatarUrl?: string;
+  gender?: string;
   //users info
 }
 
@@ -19,6 +20,7 @@ const initialState: StoreUserInfo = {
   email: "",
   avatarUrl: "",
   userInitials: "",
+  gender: "",
 };
 
 const userSlice = createSlice({
@@ -32,8 +34,9 @@ const userSlice = createSlice({
         email,
         avatarUrl = "https://www.ruchirajkarki.com.np/assets/subashPP-66UpkRpj.webp",
         userInitials = createUserInitial(name),
+        gender,
       } = action.payload;
-      return { id, name, email, avatarUrl, userInitials };
+      return { id, name, email, avatarUrl, userInitials, gender };
     },
   },
 });

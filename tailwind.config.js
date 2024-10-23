@@ -2,12 +2,12 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    './index.html',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./index.html",
+  ],
   theme: {
     container: {
       center: true,
@@ -17,6 +17,15 @@ module.exports = {
       },
     },
     extend: {
+      animation: {
+        twinkle: "twinkle 1.5s ease-in-out infinite",
+      },
+      keyframes: {
+        twinkle: {
+          "0%, 100%": { opacity: 0.2, transform: "scale(0.5)" },
+          "50%": { opacity: 1, transform: "scale(1.5)" },
+        },
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -74,4 +83,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
