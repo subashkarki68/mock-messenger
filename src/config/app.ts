@@ -11,13 +11,13 @@ interface AppConfig {
 }
 
 export const appConfig: AppConfig = {
-    name: "Sample App",
+    name: "Mock Messenger",
     github: {
-        title: "React Shadcn Starter",
-        url: "https://github.com/hayyi2/react-shadcn-starter",
+        title: "Mock Messenger",
+        url: "https://github.com/subashkarki68/mock-messenger",
     },
     author: {
-        name: "hayyi",
-        url: "https://github.com/hayyi2/",
+        name: "Ruchi Raj Karki",
+        url: "https://github.com/subashkarki68/",
     }
 }
