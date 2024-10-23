@@ -4,6 +4,7 @@ const initialState = {
   users: [],
   hasNextPage: false,
   isFetchingNextPage: false,
+  selectedChatId: 0,
 };
 
 const usersSlice = createSlice({
@@ -11,7 +12,6 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     setUsers(state, action) {
-      console.log("🚀 ~ setUsers ~ action:", action.payload);
       state.users = action.payload;
     },
     setHasNextPage(state, action) {
@@ -20,9 +20,16 @@ const usersSlice = createSlice({
     setIsFetchingNextPage(state, action) {
       state.isFetchingNextPage = action.payload;
     },
+    setSelectedChatId(state, action) {
+      state.selectedChatId = action.payload;
+    },
   },
 });
 
-export const { setUsers, setHasNextPage, setIsFetchingNextPage } =
-  usersSlice.actions;
+export const {
+  setUsers,
+  setHasNextPage,
+  setIsFetchingNextPage,
+  setSelectedChatId,
+} = usersSlice.actions;
 export default usersSlice.reducer;

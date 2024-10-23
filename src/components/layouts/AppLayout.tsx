@@ -1,7 +1,7 @@
 import ChatLayout from "@/pages/messenger/ChatLayout/ChatLayout";
 import ChatMenu from "@/pages/messenger/ChatMenu/ChatMenu";
 import UserDetail from "@/pages/messenger/UserDetail/UserDetail";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -11,8 +11,21 @@ export interface OpenerState {
 
 export function Applayout() {
   const [open, setOpen] = useState<OpenerState>({
-    userDetail: false,
+    userDetail: true,
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpen({
+        userDetail: false,
+      });
+    }, 4800);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   const headerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 

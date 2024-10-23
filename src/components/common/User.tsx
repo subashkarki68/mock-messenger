@@ -8,6 +8,8 @@ interface UserProps {
   userInitials?: string;
   latestMessage?: string;
   gender?: string;
+  selected?: boolean;
+  onClick: () => void;
 }
 const User: React.FC<UserProps> = ({
   avatarUrl,
@@ -15,6 +17,8 @@ const User: React.FC<UserProps> = ({
   userInitials = "JD",
   gender,
   latestMessage,
+  selected = false,
+  onClick,
 }) => {
   // const [message, setMessage] = React.useState(latestMessage);
   // const [avatar, setAvatarUrl] = React.useState(avatarUrl);
@@ -26,7 +30,12 @@ const User: React.FC<UserProps> = ({
   //   }
   // }, [message, avatar]);
   return (
-    <div className="flex hover:bg-gray-300 px-4 py-2 cursor-pointer rounded-lg w-full">
+    <div
+      onClick={onClick}
+      className={`flex hover:bg-secondary mb-2 px-4 py-2 cursor-pointer rounded-lg w-full ${
+        selected ? "bg-secondary" : ""
+      }`}
+    >
       <div className="w-12 h-12">
         <Avatar className="w-12 h-12">
           <AvatarImage src={avatarUrl} />

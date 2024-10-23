@@ -8,6 +8,7 @@ import { UserInfo } from "@/store/slices/userSlice";
 import {
   setHasNextPage,
   setIsFetchingNextPage,
+  setSelectedChatId,
   setUsers,
 } from "@/store/slices/usersSlice";
 import { useEffect } from "react";
@@ -26,6 +27,13 @@ const ChatMenu = () => {
   } = useUsers();
   const dispatch = useDispatch();
   const users = useSelector((state: any) => state.users.users);
+  const selectedChatId = useSelector((state: any) => {
+    if (!state.users.selectedChatId) {
+      dispatch(setSelectedChatId(users[0]?.id));
+      return users[0]?.id;
+    }
+    return state.users.selectedChatId;
+  });
 
   const { ref, inView } = useInView({
     threshold: 1,
@@ -55,24 +63,12 @@ const ChatMenu = () => {
       dispatch(setIsFetchingNextPage(isFetchingNextPage));
     }
   }, [data, dispatch, hasNextPage, isFetchingNextPage]);
-  // useEffect(() => {
-  //   if (data) {
-  //     // dispatch(setUsers(data.pages.flatMap((page) => page.data)));
-  //     dispatch(
-  //       setUsers(
-  //         data.pages.flatMap((page) =>
-  //           page.data.map((user: UserInfo) => ({
-  //             ...user,
-  //             avatarUrl: getRandomAvatarUrl(user.gender ?? "men"),
-  //             latestMessage: getRandomMessage(),
-  //           }))
-  //         )
-  //       )
-  //     );
-  //     dispatch(setHasNextPage(hasNextPage));
-  //     dispatch(setIsFetchingNextPage(isFetchingNextPage));
-  //   }
-  // }, [data, dispatch, hasNextPage, isFetchingNextPage]);
+
+  const handleUserClick = (userId: any) => {
+    dispatch(setSelectedChatId(userId));
+    // dispatch(setIsFetchingNextPage(true));
+  };
+
   if (error) return <div>Error: {error.message}</div>;
   return (
     <Card className="overflow-x-hidden overflow-y-scroll h-full">
@@ -83,6 +79,8 @@ const ChatMenu = () => {
         {users.map((user: UserInfo) => (
           <User
             key={user.id}
+            selected={selectedChatId === user.id}
+            onClick={() => handleUserClick(user.id)}
             // avatarUrl={getRandomAvatarUrl(user.gender ?? "men")}
             // latestMessage={getRandomMessage()}
             {...user}
