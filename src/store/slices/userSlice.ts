@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUserInitial } from "./utils";
+import { createUserInitial } from "../../lib/userUtils";
 
 export interface UserInfo {
   id: number;

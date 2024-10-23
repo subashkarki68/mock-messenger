@@ -1,11 +1,16 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import User from "@/components/common/User";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ChatMenu = () => {
   return (
-    <Card className="px-4">
+    <Card>
       <CardHeader>
-        <CardTitle className="text-2xl">Chats</CardTitle>
+        <CardTitle className="text-xl">Chats</CardTitle>
       </CardHeader>
+      <CardContent>
+        <User />
+        <User />
+      </CardContent>
     </Card>
   );
 };

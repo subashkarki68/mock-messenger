@@ -20,6 +20,7 @@ import { ModeToggle } from "../mode-toggle";
 export function Header() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+
   const currentUser = useCurrentUser();
 
   return (
