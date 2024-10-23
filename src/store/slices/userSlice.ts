@@ -1,16 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createUserInitial } from "./utils";
 
 export interface UserInfo {
   id: number;
   name: string;
   email: string;
+  avatarUrl?: string;
   //users info
 }
 
-const initialState: UserInfo = {
+export interface StoreUserInfo extends UserInfo {
+  userInitials: string;
+}
+
+const initialState: StoreUserInfo = {
   id: 0,
   name: "",
   email: "",
+  avatarUrl: "",
+  userInitials: "",
 };
 
 const userSlice = createSlice({
@@ -18,9 +26,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      state.id = action.payload.id;
-      state.name = action.payload.name;
-      state.email = action.payload.email;
+      const {
+        id,
+        name,
+        email,
+        avatarUrl = "https://www.ruchirajkarki.com.np/assets/subashPP-66UpkRpj.webp",
+        userInitials = createUserInitial(name),
+      } = action.payload;
+      return { id, name, email, avatarUrl, userInitials };
     },
   },
 });

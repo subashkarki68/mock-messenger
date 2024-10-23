@@ -1,11 +1,12 @@
-import { setUser, UserInfo } from "@/store/slices/userSlice";
+import { setUser, StoreUserInfo, UserInfo } from "@/store/slices/userSlice";
 import { useQuery } from "@tanstack/react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const mockUser: UserInfo = {
   id: 1,
   name: "Subash Karki",
   email: "ruchirajkarki@gmail.com",
+  avatarUrl: "https://www.ruchirajkarki.com.np/assets/subashPP-66UpkRpj.webp",
 };
 
 const fetchUser = async () => {
@@ -23,4 +24,8 @@ const useUser = () => {
   return { data, error, isLoading };
 };
 
-export default useUser;
+const useCurrentUser = () => {
+  return useSelector((state: any) => state.user as StoreUserInfo);
+};
+
+export { useCurrentUser, useUser };

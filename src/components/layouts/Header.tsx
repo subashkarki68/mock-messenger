@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { appConfig } from "@/config/app";
-import useUser from "@/hooks/useUser";
+import { useCurrentUser } from "@/hooks/useUser";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
@@ -20,7 +20,7 @@ import { ModeToggle } from "../mode-toggle";
 export function Header() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const { data, error, isLoading } = useUser();
+  const currentUser = useCurrentUser();
 
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/90 backdrop-blur">
@@ -115,7 +115,8 @@ export function Header() {
                   className="relative h-8 w-8 rounded-full"
                 >
                   <Avatar className="h-8 w-8">
-                    <AvatarFallback>{`${data?.name[0] ?? " "}`}</AvatarFallback>
+                    <AvatarImage src={currentUser?.avatarUrl} />
+                    <AvatarFallback>{currentUser?.userInitials}</AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
@@ -124,7 +125,7 @@ export function Header() {
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">User</p>
                     <p className="text-xs leading-none text-muted-foreground">
-                      {data?.email}
+                      {currentUser?.email}
                     </p>
                   </div>
                 </DropdownMenuLabel>
