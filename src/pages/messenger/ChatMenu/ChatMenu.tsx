@@ -39,7 +39,7 @@ const ChatMenu = () => {
   useEffect(() => {
     if (data) {
       const newUsers = data.pages.flatMap((page) => page.data);
-      const usersMap = new Map(users.map((user) => [user.id, user]));
+      const usersMap = new Map(users.map((user: UserInfo) => [user.id, user]));
       newUsers.forEach((user) => {
         if (!usersMap.has(user.id)) {
           usersMap.set(user.id, {
