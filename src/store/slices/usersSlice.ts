@@ -11,6 +11,7 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     setUsers(state, action) {
+      console.log("🚀 ~ setUsers ~ action:", action.payload);
       state.users = action.payload;
     },
     setHasNextPage(state, action) {

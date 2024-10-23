@@ -7,6 +7,7 @@ export interface UserInfo {
   email: string;
   avatarUrl?: string;
   gender?: string;
+  latestMessage?: string;
   //users info
 }
 

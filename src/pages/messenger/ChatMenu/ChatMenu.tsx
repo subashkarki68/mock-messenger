@@ -2,6 +2,7 @@ import Spinner from "@/components/common/Spinner";
 import User from "@/components/common/User";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUsers } from "@/hooks/useUser";
+import { getRandomMessage } from "@/lib/mockMessages";
 import { getRandomAvatarUrl } from "@/lib/userUtils";
 import { UserInfo } from "@/store/slices/userSlice";
 import {
@@ -35,14 +36,43 @@ const ChatMenu = () => {
       fetchNextPage();
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
-
   useEffect(() => {
     if (data) {
-      dispatch(setUsers(data.pages.flatMap((page) => page.data)));
+      const newUsers = data.pages.flatMap((page) => page.data);
+      const usersMap = new Map(users.map((user) => [user.id, user]));
+      newUsers.forEach((user) => {
+        if (!usersMap.has(user.id)) {
+          usersMap.set(user.id, {
+            ...user,
+            avatarUrl: getRandomAvatarUrl(user.gender ?? "men"),
+            latestMessage: getRandomMessage(),
+          });
+        }
+      });
+      const updatedUsers = Array.from(usersMap.values());
+      dispatch(setUsers(updatedUsers));
       dispatch(setHasNextPage(hasNextPage));
       dispatch(setIsFetchingNextPage(isFetchingNextPage));
     }
   }, [data, dispatch, hasNextPage, isFetchingNextPage]);
+  // useEffect(() => {
+  //   if (data) {
+  //     // dispatch(setUsers(data.pages.flatMap((page) => page.data)));
+  //     dispatch(
+  //       setUsers(
+  //         data.pages.flatMap((page) =>
+  //           page.data.map((user: UserInfo) => ({
+  //             ...user,
+  //             avatarUrl: getRandomAvatarUrl(user.gender ?? "men"),
+  //             latestMessage: getRandomMessage(),
+  //           }))
+  //         )
+  //       )
+  //     );
+  //     dispatch(setHasNextPage(hasNextPage));
+  //     dispatch(setIsFetchingNextPage(isFetchingNextPage));
+  //   }
+  // }, [data, dispatch, hasNextPage, isFetchingNextPage]);
   if (error) return <div>Error: {error.message}</div>;
   return (
     <Card className="overflow-x-hidden overflow-y-scroll h-full">
@@ -53,7 +83,7 @@ const ChatMenu = () => {
         {users.map((user: UserInfo) => (
           <User
             key={user.id}
-            avatarUrl={getRandomAvatarUrl(user.gender ?? "men")}
+            // avatarUrl={getRandomAvatarUrl(user.gender ?? "men")}
             // latestMessage={getRandomMessage()}
             {...user}
           />
