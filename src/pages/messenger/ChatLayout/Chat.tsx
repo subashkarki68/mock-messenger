@@ -1,7 +1,14 @@
 import Spinner from "@/components/common/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Message } from "@/interfaces/message";
 import { UserInfo } from "@/store/slices/userSlice";
+import { format } from "date-fns";
 
 interface ChatProps {
   isIncomming: boolean;
@@ -25,9 +32,20 @@ const Chat: React.FC<ChatProps> = ({ isIncomming, message, user }) => {
             <Spinner size={12} />
           </AvatarFallback>
         </Avatar>
-        <div className="bg-secondary p-2 rounded-lg shadow-md">
-          {message.text}
-        </div>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <div className="bg-secondary p-2 rounded-lg shadow-md">
+                <p className="cursor-text">{message.text}</p>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>
+                {format(new Date(message.timestamp), "MMM d, yyyy hh:mm a")}
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   );

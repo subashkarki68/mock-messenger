@@ -1,6 +1,13 @@
 import { OpenerState } from "@/components/layouts/AppLayout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import ChatBody from "./ChatBody";
+import ChatFooter from "./ChatFooter";
 import ChatHeader from "./ChatHeader";
 
 interface ChatLayoutProps {
@@ -19,6 +26,9 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ open, setOpen }) => {
       <CardContent className="overflow-y-scroll">
         <ChatBody />
       </CardContent>
+      <CardFooter>
+        <ChatFooter />
+      </CardFooter>
     </Card>
   );
 };

@@ -2,8 +2,8 @@ import { useCurrentUser } from "@/hooks/useUser";
 import { Message } from "@/interfaces/message";
 import { getRandomMessage } from "@/lib/mockMessages";
 import { UserInfo } from "@/store/slices/userSlice";
-import { compareDesc } from "date-fns";
-import { useEffect, useState } from "react";
+import { compareAsc } from "date-fns";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Chat from "./Chat";
 
@@ -24,16 +24,21 @@ const ChatBody = () => {
     (user: UserInfo) => user.id === selectedChatId
   );
   const [updatedUser, setUpdatedUser] = useState<any>(null);
-  // const updatedUser = {
-  //   ...currentUser,
-  //   messages: getRandomMessage(inCommingUser?.messages?.length),
-  // };
+  const chatBodyRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (inCommingUser) {
       const messages = getRandomMessage(inCommingUser?.messages?.length);
       setUpdatedUser({ ...currentUser, messages });
     }
   }, [inCommingUser, currentUser]);
+
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [updatedUser, inCommingUser]);
+
   const combinedMessages = [
     ...(inCommingUser?.messages ?? []).map((message: CombinedMessage) => ({
       ...message,
@@ -46,12 +51,12 @@ const ChatBody = () => {
   ].sort((a, b) => {
     const dateA = a.timestamp ? new Date(a.timestamp) : new Date(0);
     const dateB = b.timestamp ? new Date(b.timestamp) : new Date(0);
-    return compareDesc(dateA, dateB);
+    return compareAsc(dateA, dateB);
   });
   console.log("🚀 ~ ChatBody ~ combinedMessages:", combinedMessages);
 
   return (
-    <div className="w-full">
+    <div className="w-full" ref={chatBodyRef}>
       {combinedMessages.map((message: CombinedMessage, index) => (
         <Chat
           key={index}

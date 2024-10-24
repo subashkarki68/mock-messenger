@@ -27,6 +27,14 @@ export const getRandomTimeStamp = () => {
   // Subtract random days from the current date
   const randomDate = subDays(new Date(), randomDaysAgo);
 
+  // Generate a random minute and second
+  const randomMinute = Math.floor(Math.random() * 60);
+  const randomSecond = Math.floor(Math.random() * 60);
+
+  // Set the random minute and second on the date
+  randomDate.setMinutes(randomMinute);
+  randomDate.setSeconds(randomSecond);
+
   // Return the date formatted as ISO string or any other format you prefer
   return randomDate;
 };
