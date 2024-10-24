@@ -10,7 +10,7 @@ interface ChatLayoutProps {
 
 const ChatLayout: React.FC<ChatLayoutProps> = ({ open, setOpen }) => {
   return (
-    <Card className="px-2">
+    <Card className="px-2 h-full">
       <CardHeader>
         <CardTitle>
           <ChatHeader setOpen={setOpen} open={open} />

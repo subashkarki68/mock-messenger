@@ -13,3 +13,7 @@ export const getRandomAvatarUrl = (gender: string) => {
       Math.random() * 100
     )}.jpg`;
 };
+
+export const getRandomNumber = (max: number) => {
+  return Math.floor(Math.random() * max);
+};

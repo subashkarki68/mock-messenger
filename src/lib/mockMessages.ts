@@ -226,5 +226,7 @@ const messages = [
   "See you then",
 ];
 
-export const getRandomMessage = () =>
-  messages[(Math.random() * messages.length) >>> 0];
+export const getRandomMessage = (number = 1) =>
+  Array(number)
+    .fill(0)
+    .map(() => messages[(Math.random() * messages.length) >>> 0]);

@@ -19,7 +19,7 @@ export function Applayout() {
       setOpen({
         userDetail: false,
       });
-    }, 4800);
+    }, 8000);
 
     return () => {
       clearTimeout(timer);

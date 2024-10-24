@@ -13,6 +13,7 @@ export interface UserInfo {
 
 export interface StoreUserInfo extends UserInfo {
   userInitials: string;
+  messages?: string[];
 }
 
 const initialState: StoreUserInfo = {

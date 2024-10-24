@@ -3,7 +3,7 @@ import User from "@/components/common/User";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUsers } from "@/hooks/useUser";
 import { getRandomMessage } from "@/lib/mockMessages";
-import { getRandomAvatarUrl } from "@/lib/userUtils";
+import { getRandomAvatarUrl, getRandomNumber } from "@/lib/userUtils";
 import { UserInfo } from "@/store/slices/userSlice";
 import {
   setHasNextPage,
@@ -54,6 +54,7 @@ const ChatMenu = () => {
             ...user,
             avatarUrl: getRandomAvatarUrl(user.gender ?? "men"),
             latestMessage: getRandomMessage(),
+            messages: getRandomMessage(getRandomNumber(300)),
           });
         }
       });
