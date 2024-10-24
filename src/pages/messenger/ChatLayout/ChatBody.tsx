@@ -3,6 +3,7 @@ import { Message } from "@/interfaces/message";
 import { getRandomMessage } from "@/lib/mockMessages";
 import { UserInfo } from "@/store/slices/userSlice";
 import { compareDesc } from "date-fns";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Chat from "./Chat";
 
@@ -19,18 +20,20 @@ const ChatBody = () => {
   const selectedChatId = useSelector(
     (state: any) => state.users.selectedChatId
   );
-  // console.log("🚀 ~ ChatBody ~ selectedChatId:", selectedChatId);
   const inCommingUser = users.find(
     (user: UserInfo) => user.id === selectedChatId
   );
-
-  // currentUser.messages = getRandomMessage(inCommingUser?.messages.length());
-  const updatedUser = {
-    ...currentUser,
-    messages: getRandomMessage(inCommingUser?.messages?.length),
-  };
-  // console.log("🚀 ~ ChatBody ~ inCommingUser:", inCommingUser);
-  // console.log("🚀 ~ ChatBody ~ updatedUser:", updatedUser);
+  const [updatedUser, setUpdatedUser] = useState<any>(null);
+  // const updatedUser = {
+  //   ...currentUser,
+  //   messages: getRandomMessage(inCommingUser?.messages?.length),
+  // };
+  useEffect(() => {
+    if (inCommingUser) {
+      const messages = getRandomMessage(inCommingUser?.messages?.length);
+      setUpdatedUser({ ...currentUser, messages });
+    }
+  }, [inCommingUser, currentUser]);
   const combinedMessages = [
     ...(inCommingUser?.messages ?? []).map((message: CombinedMessage) => ({
       ...message,
