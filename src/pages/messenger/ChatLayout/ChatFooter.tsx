@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const ChatFooter = () => {
@@ -12,12 +13,13 @@ const ChatFooter = () => {
         />
       </div>
       <div className="flex-grow-0">
-        <div
-          className="cursor-pointer"
+        <Button
+          variant={"ghost"}
+          title="Send"
           onClick={() => alert("Comming soon...")}
         >
           <Icons.send />
-        </div>
+        </Button>
       </div>
     </div>
   );
