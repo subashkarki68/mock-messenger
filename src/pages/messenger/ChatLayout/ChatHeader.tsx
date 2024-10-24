@@ -23,7 +23,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ open, setOpen }) => {
   );
   return (
     <>
-      <div className="flex justify-between mb-4 border-secondary border-b-2 pb-4">
+      <div className="flex justify-between p-0 border-secondary w-full ">
         <div className="flex gap-4 items-center">
           <div className="relative">
             <Avatar>

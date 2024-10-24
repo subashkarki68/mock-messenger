@@ -1,3 +1,4 @@
+import { Message } from "@/interfaces/message";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Spinner from "./Spinner";
@@ -6,7 +7,7 @@ interface UserProps {
   avatarUrl?: string;
   name?: string;
   userInitials?: string;
-  latestMessage?: string;
+  latestMessage?: Message[];
   gender?: string;
   selected?: boolean;
   onClick: () => void;
@@ -47,7 +48,7 @@ const User: React.FC<UserProps> = ({
       <div className="flex flex-col ml-4">
         <h3 className="font-semibold">{name}</h3>
         <p className="text-sm text-muted-foreground truncate max-w-xs">
-          {latestMessage}
+          {latestMessage?.[0].text}
         </p>
       </div>
     </div>

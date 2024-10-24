@@ -1,3 +1,4 @@
+import { Message } from "@/interfaces/message";
 import { createSlice } from "@reduxjs/toolkit";
 import { createUserInitial } from "../../lib/userUtils";
 
@@ -7,13 +8,13 @@ export interface UserInfo {
   email: string;
   avatarUrl?: string;
   gender?: string;
-  latestMessage?: string;
+  latestMessage?: Message[];
   //users info
 }
 
 export interface StoreUserInfo extends UserInfo {
   userInitials: string;
-  messages?: string[];
+  messages?: Message[];
 }
 
 const initialState: StoreUserInfo = {

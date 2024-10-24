@@ -1,3 +1,5 @@
+import { getRandomTimeStamp } from "./userUtils";
+
 const messages = [
   "Hello, how are you?",
   "I'm good, thanks! How about you?",
@@ -229,4 +231,7 @@ const messages = [
 export const getRandomMessage = (number = 1) =>
   Array(number)
     .fill(0)
-    .map(() => messages[(Math.random() * messages.length) >>> 0]);
+    .map(() => ({
+      text: messages[(Math.random() * messages.length) >>> 0],
+      timestamp: getRandomTimeStamp().toISOString(),
+    }));

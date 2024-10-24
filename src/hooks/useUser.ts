@@ -8,6 +8,7 @@ const mockUser: UserInfo = {
   name: "Subash Karki",
   email: "ruchirajkarki@gmail.com",
   avatarUrl: "https://www.ruchirajkarki.com.np/assets/subashPP-66UpkRpj.webp",
+  gender: "male",
 };
 
 const fetchUser = async () => {
