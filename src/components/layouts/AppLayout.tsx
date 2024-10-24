@@ -48,7 +48,7 @@ export function Applayout() {
           height: `calc(90vh - ${headerHeight}px - ${footerHeight}px)`,
         }}
       >
-        <div className="container px-4 md:px-8 flex-grow flex flex-row justify-between gap-4 h-full">
+        <div className="container px-4 md:px-8 flex-grow flex flex-row justify-between gap-2 h-full">
           {/* <Outlet /> */}
           <div className="flex-grow basis-1/6 h-full">
             <ChatMenu />
