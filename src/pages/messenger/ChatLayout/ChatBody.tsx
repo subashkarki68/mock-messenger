@@ -53,7 +53,6 @@ const ChatBody = () => {
     const dateB = b.timestamp ? new Date(b.timestamp) : new Date(0);
     return compareAsc(dateA, dateB);
   });
-  console.log("🚀 ~ ChatBody ~ combinedMessages:", combinedMessages);
 
   return (
     <div className="w-full" ref={chatBodyRef}>

@@ -27,7 +27,6 @@ const ChatMenu = () => {
   } = useUsers();
   const dispatch = useDispatch();
   const users = useSelector((state: any) => state.users.users);
-  console.log("🚀 ~ ChatMenu ~ users:", users);
   const selectedChatId = useSelector((state: any) => {
     if (!state.users.selectedChatId) {
       dispatch(setSelectedChatId(users[0]?.id));

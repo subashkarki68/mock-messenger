@@ -26,7 +26,7 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ open, setOpen }) => {
       <CardContent className="overflow-y-scroll">
         <ChatBody />
       </CardContent>
-      <CardFooter>
+      <CardFooter className="w-full">
         <ChatFooter />
       </CardFooter>
     </Card>

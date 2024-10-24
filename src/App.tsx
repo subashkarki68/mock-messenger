@@ -5,7 +5,6 @@ import { router } from "./Router";
 
 export default function App() {
   useUser();
-  console.log("App component rendered");
   return (
     <ThemeProvider>
       <RouterProvider router={router} />
